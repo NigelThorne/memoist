@@ -96,7 +96,8 @@ module Memoist
         include InstanceMethods
 
         if method_defined?(unmemoized_method)
-          raise AlreadyMemoizedError.new("Already memoized #{method_name}")
+          remove_method(unmemoized_method)  # TODO: Make this optional
+          #raise AlreadyMemoizedError.new("Already memoized #{method_name}")
         end
         alias_method unmemoized_method, method_name
 
